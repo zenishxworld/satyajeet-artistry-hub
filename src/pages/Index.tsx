@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import heroImage from "@/assets/hero-bg.jpg";
 
+// Portfolio homepage for Satyajeet Shinde
 const Index = () => {
   const categories = [
     {
