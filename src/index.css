@@ -7,55 +7,54 @@
 /* Satyajeet Shinde Portfolio Design System */
 @layer base {
   :root {
-    /* Dark Portfolio Theme */
-    --background: 220 13% 9%;
-    --foreground: 210 20% 95%;
+    /* Two-Color Design System: Navy (#212842) & Cream (#F0E7D5) */
+    --background: 226 33% 18%;           /* #212842 - Dark Navy */
+    --foreground: 36 44% 89%;            /* #F0E7D5 - Warm Cream */
 
-    --card: 220 13% 11%;
-    --card-foreground: 210 20% 95%;
+    --card: 226 33% 20%;                 /* Slightly lighter navy */
+    --card-foreground: 36 44% 89%;       /* Cream text */
 
-    --popover: 220 13% 11%;
-    --popover-foreground: 210 20% 95%;
+    --popover: 226 33% 20%;              /* Navy for popovers */
+    --popover-foreground: 36 44% 89%;    /* Cream text */
 
-    --primary: 217 91% 60%;
-    --primary-foreground: 220 13% 9%;
+    --primary: 36 44% 89%;               /* Cream as primary */
+    --primary-foreground: 226 33% 18%;   /* Navy text on cream */
 
-    --secondary: 220 13% 15%;
-    --secondary-foreground: 210 20% 85%;
+    --secondary: 226 33% 25%;            /* Lighter navy variant */
+    --secondary-foreground: 36 44% 85%;  /* Slightly muted cream */
 
-    --muted: 220 13% 13%;
-    --muted-foreground: 215 14% 65%;
+    --muted: 226 33% 22%;                /* Muted navy */
+    --muted-foreground: 36 30% 75%;      /* Muted cream */
 
-    --accent: 25 95% 53%;
-    --accent-foreground: 220 13% 9%;
+    --accent: 36 44% 89%;                /* Cream accent */
+    --accent-foreground: 226 33% 18%;    /* Navy on cream */
 
-    --success: 142 76% 36%;
-    --success-foreground: 210 20% 95%;
+    --success: 36 44% 89%;               /* Cream for success */
+    --success-foreground: 226 33% 18%;   /* Navy text */
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 20% 95%;
+    --destructive: 0 50% 60%;            /* Keep red for errors */
+    --destructive-foreground: 36 44% 89%; /* Cream text */
 
-    --border: 220 13% 18%;
-    --input: 220 13% 18%;
-    --ring: 217 91% 60%;
+    --border: 226 33% 30%;               /* Lighter navy for borders */
+    --input: 226 33% 25%;                /* Input background */
+    --ring: 36 44% 89%;                  /* Cream focus ring */
 
     --radius: 0.75rem;
 
     /* Custom Portfolio Colors */
-    --hero-gradient-from: 220 13% 9%;
-    --hero-gradient-to: 217 19% 12%;
-    --section-bg: 220 13% 11%;
-    --highlight: 25 95% 53%;
-    --sage: 142 76% 36%;
+    --hero-gradient-from: 226 33% 18%;   /* Navy gradient start */
+    --hero-gradient-to: 226 33% 22%;     /* Slightly lighter navy */
+    --section-bg: 226 33% 20%;           /* Section backgrounds */
+    --highlight: 36 44% 89%;             /* Cream highlights */
     
     /* Typography */
     --font-sans: 'Inter', system-ui, sans-serif;
     --font-display: 'Playfair Display', serif;
     
     /* Shadows & Effects */
-    --shadow-glow: 0 0 50px hsl(var(--primary) / 0.15);
-    --shadow-card: 0 10px 40px hsl(220 13% 5% / 0.4);
-    --shadow-soft: 0 4px 20px hsl(220 13% 5% / 0.2);
+    --shadow-glow: 0 0 50px hsl(36 44% 89% / 0.15);
+    --shadow-card: 0 10px 40px hsl(226 33% 10% / 0.4);
+    --shadow-soft: 0 4px 20px hsl(226 33% 15% / 0.2);
     
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -100,8 +99,8 @@
   .hero-overlay {
     background: linear-gradient(
       45deg,
-      hsl(220 13% 9% / 0.8),
-      hsl(217 19% 12% / 0.6)
+      hsl(226 33% 18% / 0.8),
+      hsl(226 33% 22% / 0.6)
     );
   }
 
