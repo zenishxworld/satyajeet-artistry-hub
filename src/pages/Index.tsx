@@ -8,22 +8,22 @@ import heroImage from "@/assets/hero-bg.jpg";
 const Index = () => {
   const categories = [
     {
-      title: "IELTS & Training",
-      description: "Professional IELTS coaching and language training workshops across leading institutions.",
+      title: "Training & Devlopmnt",
+      description: "Professional IELTS | PTE | TOEFL | DUOLINGO coaching and language training workshops across leading institutions.",
       icon: GraduationCap,
       link: "/workshops",
       accent: "text-success",
     },
     {
-      title: "Filmmaking & Acting",
-      description: "Cinematic storytelling through direction, acting, and cinematography across diverse projects.",
+      title: "Filmography",
+      description: "Cinematic storytelling through Direction, Acting, Screenplay Writing and Cinematography across diverse projects.",
       icon: Film,
       link: "/filmography",
       accent: "text-primary",
     },
     {
-      title: "Music & Projects",
-      description: "Creative music video productions and collaborative artistic ventures.",
+      title: "Music",
+      description: "Welcome to my World of music where every note tells a story. I'm a singer weaving my emotions into melodies. Join me on this musical journey—one song at a time.",
       icon: Music,
       link: "/music",
       accent: "text-accent",
@@ -37,7 +37,7 @@ const Index = () => {
       date: "2024",
       description: "A heartfelt music video exploring life's journey",
       image: "/placeholder-music.jpg",
-      link: "/music",
+      link: "https://youtu.be/ZwmgMYfTQ4A",
     },
     {
       title: "IELTS Success Program",
@@ -103,13 +103,13 @@ const Index = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="space-y-6">
                 <h2 className="font-display text-3xl md:text-4xl font-bold">
-                  About Satyajeet
+                  About Me
                 </h2>
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   A multifaceted creative professional with expertise spanning education, 
                   filmmaking, and music. With extensive experience in IELTS training at 
                   prestigious institutions and a passion for cinematic storytelling, 
-                  Satyajeet brings unique perspective to every project.
+                  He brings unique perspective to every project.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   Based in Vadodara, Gujarat, combining technical excellence with 
@@ -131,9 +131,9 @@ const Index = () => {
                       <span className="text-2xl font-display font-bold text-primary">SS</span>
                     </div>
                     <h3 className="font-display text-xl font-semibold">Satyajeet R. Shinde</h3>
-                    <p className="text-muted-foreground">Filmmaker • Educator • Creative Professional</p>
+                    <p className="text-muted-foreground">Educator • Singer • Filmmaker • Passionate photographer</p>
                     <div className="pt-4">
-                      <Button variant="outline" size="sm">
+                      {/* <Button variant="outline" size="sm">
                         <a 
                           href="/resume.pdf" 
                           target="_blank"
@@ -142,7 +142,7 @@ const Index = () => {
                           <span>Download Resume</span>
                           <ChevronRight size={16} />
                         </a>
-                      </Button>
+                      </Button> */}
                     </div>
                   </div>
                 </div>

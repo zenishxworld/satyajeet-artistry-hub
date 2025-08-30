@@ -13,13 +13,13 @@ const Footer = () => {
   ];
 
   const services = [
-    { name: "IELTS Training", icon: GraduationCap },
+    { name: "Training & Development", icon: GraduationCap },
     { name: "Film Production", icon: Film },
     { name: "Music Videos", icon: Music }
   ];
 
   const contactInfo = [
-    { icon: Phone, text: "+91-9974284035", href: "tel:+919974284035" },
+    { icon: Phone, text: "+91-7351193066", href: "tel:+91-7351193066" },
     { icon: Mail, text: "satyajeetshinde178@gmail.com", href: "mailto:satyajeetshinde178@gmail.com" },
     { icon: MapPin, text: "Vadodara, Gujarat" }
   ];
@@ -120,12 +120,12 @@ const Footer = () => {
               >
                 Get In Touch
               </Link>
-              <Link 
+              {/* <Link 
                 to="/about" 
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
                 Download Resume
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>
