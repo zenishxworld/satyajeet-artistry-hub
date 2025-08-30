@@ -7,54 +7,55 @@
 /* Satyajeet Shinde Portfolio Design System */
 @layer base {
   :root {
-    /* Two-Color Design System: Navy (#212842) & Cream (#F0E7D5) */
-    --background: 226 33% 18%;           /* #212842 - Dark Navy */
-    --foreground: 36 44% 89%;            /* #F0E7D5 - Warm Cream */
+    /* 60/40 Color Balance: Navy (#212842) & Cream (#F0E7D5) */
+    --background: 226 33% 18%;           /* Navy - 60% usage */
+    --foreground: 36 44% 89%;            /* Cream text */
 
-    --card: 226 33% 20%;                 /* Slightly lighter navy */
-    --card-foreground: 36 44% 89%;       /* Cream text */
+    --card: 36 44% 89%;                  /* Cream cards - 40% usage */
+    --card-foreground: 226 33% 18%;      /* Navy text on cream */
 
-    --popover: 226 33% 20%;              /* Navy for popovers */
-    --popover-foreground: 36 44% 89%;    /* Cream text */
+    --popover: 36 44% 89%;               /* Cream popovers */
+    --popover-foreground: 226 33% 18%;   /* Navy text */
 
-    --primary: 36 44% 89%;               /* Cream as primary */
-    --primary-foreground: 226 33% 18%;   /* Navy text on cream */
+    --primary: 226 33% 18%;              /* Navy as primary */
+    --primary-foreground: 36 44% 89%;    /* Cream text on navy */
 
-    --secondary: 226 33% 25%;            /* Lighter navy variant */
-    --secondary-foreground: 36 44% 85%;  /* Slightly muted cream */
+    --secondary: 36 44% 89%;             /* Cream secondary */
+    --secondary-foreground: 226 33% 18%; /* Navy text on cream */
 
-    --muted: 226 33% 22%;                /* Muted navy */
-    --muted-foreground: 36 30% 75%;      /* Muted cream */
+    --muted: 36 44% 85%;                 /* Muted cream */
+    --muted-foreground: 226 33% 25%;     /* Dark navy text */
 
-    --accent: 36 44% 89%;                /* Cream accent */
-    --accent-foreground: 226 33% 18%;    /* Navy on cream */
+    --accent: 226 33% 18%;               /* Navy accent */
+    --accent-foreground: 36 44% 89%;     /* Cream text on navy */
 
-    --success: 36 44% 89%;               /* Cream for success */
-    --success-foreground: 226 33% 18%;   /* Navy text */
+    --success: 226 33% 18%;              /* Navy for success */
+    --success-foreground: 36 44% 89%;    /* Cream text */
 
     --destructive: 0 50% 60%;            /* Keep red for errors */
     --destructive-foreground: 36 44% 89%; /* Cream text */
 
-    --border: 226 33% 30%;               /* Lighter navy for borders */
-    --input: 226 33% 25%;                /* Input background */
-    --ring: 36 44% 89%;                  /* Cream focus ring */
+    --border: 226 33% 30%;               /* Navy borders */
+    --input: 36 44% 85%;                 /* Cream inputs */
+    --ring: 226 33% 18%;                 /* Navy focus ring */
 
     --radius: 0.75rem;
 
-    /* Custom Portfolio Colors */
-    --hero-gradient-from: 226 33% 18%;   /* Navy gradient start */
-    --hero-gradient-to: 226 33% 22%;     /* Slightly lighter navy */
-    --section-bg: 226 33% 20%;           /* Section backgrounds */
-    --highlight: 36 44% 89%;             /* Cream highlights */
+    /* Balanced Portfolio Colors */
+    --hero-gradient-from: 226 33% 18%;   /* Navy start */
+    --hero-gradient-to: 36 44% 89%;      /* Cream end - balanced gradient */
+    --section-bg-navy: 226 33% 18%;      /* Navy sections - 60% */
+    --section-bg-cream: 36 44% 89%;      /* Cream sections - 40% */
+    --highlight: 226 33% 18%;            /* Navy highlights */
     
     /* Typography */
     --font-sans: 'Inter', system-ui, sans-serif;
     --font-display: 'Playfair Display', serif;
     
     /* Shadows & Effects */
-    --shadow-glow: 0 0 50px hsl(36 44% 89% / 0.15);
+    --shadow-glow: 0 0 50px hsl(226 33% 18% / 0.15);
     --shadow-card: 0 10px 40px hsl(226 33% 10% / 0.4);
-    --shadow-soft: 0 4px 20px hsl(226 33% 15% / 0.2);
+    --shadow-soft: 0 4px 20px hsl(36 44% 89% / 0.2);
     
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -100,7 +101,7 @@
     background: linear-gradient(
       45deg,
       hsl(226 33% 18% / 0.8),
-      hsl(226 33% 22% / 0.6)
+      hsl(36 44% 89% / 0.3)
     );
   }
 
