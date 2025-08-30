@@ -7,27 +7,27 @@
 /* Satyajeet Shinde Portfolio Design System */
 @layer base {
   :root {
-    /* 60/40 Color Balance: Navy (#212842) & Cream (#F0E7D5) */
-    --background: 226 33% 18%;           /* Navy - 60% usage */
+    /* 70/30 Color Balance: Navy (#212842) dominant & Cream (#F0E7D5) accent */
+    --background: 226 33% 18%;           /* Navy - 70% usage */
     --foreground: 36 44% 89%;            /* Cream text */
 
-    --card: 36 44% 89%;                  /* Cream cards - 40% usage */
-    --card-foreground: 226 33% 18%;      /* Navy text on cream */
+    --card: 226 33% 20%;                 /* Navy cards - maintaining dominance */
+    --card-foreground: 36 44% 89%;       /* Cream text on navy */
 
-    --popover: 36 44% 89%;               /* Cream popovers */
-    --popover-foreground: 226 33% 18%;   /* Navy text */
+    --popover: 226 33% 20%;              /* Navy popovers */
+    --popover-foreground: 36 44% 89%;    /* Cream text */
 
-    --primary: 226 33% 18%;              /* Navy as primary */
-    --primary-foreground: 36 44% 89%;    /* Cream text on navy */
+    --primary: 36 44% 89%;               /* Cream as primary accent - 30% */
+    --primary-foreground: 226 33% 18%;   /* Navy text on cream */
 
-    --secondary: 36 44% 89%;             /* Cream secondary */
-    --secondary-foreground: 226 33% 18%; /* Navy text on cream */
+    --secondary: 226 33% 25%;            /* Navy secondary */
+    --secondary-foreground: 36 44% 89%;  /* Cream text on navy */
 
-    --muted: 36 44% 85%;                 /* Muted cream */
-    --muted-foreground: 226 33% 25%;     /* Dark navy text */
+    --muted: 226 33% 22%;                /* Navy muted */
+    --muted-foreground: 36 44% 75%;      /* Muted cream */
 
-    --accent: 226 33% 18%;               /* Navy accent */
-    --accent-foreground: 36 44% 89%;     /* Cream text on navy */
+    --accent: 36 44% 89%;                /* Cream accent - 30% usage */
+    --accent-foreground: 226 33% 18%;    /* Navy text on cream */
 
     --success: 226 33% 18%;              /* Navy for success */
     --success-foreground: 36 44% 89%;    /* Cream text */
@@ -36,26 +36,26 @@
     --destructive-foreground: 36 44% 89%; /* Cream text */
 
     --border: 226 33% 30%;               /* Navy borders */
-    --input: 36 44% 85%;                 /* Cream inputs */
-    --ring: 226 33% 18%;                 /* Navy focus ring */
+    --input: 226 33% 25%;                /* Navy inputs */
+    --ring: 36 44% 89%;                  /* Cream focus ring */
 
     --radius: 0.75rem;
 
-    /* Balanced Portfolio Colors */
-    --hero-gradient-from: 226 33% 18%;   /* Navy start */
-    --hero-gradient-to: 36 44% 89%;      /* Cream end - balanced gradient */
-    --section-bg-navy: 226 33% 18%;      /* Navy sections - 60% */
-    --section-bg-cream: 36 44% 89%;      /* Cream sections - 40% */
-    --highlight: 226 33% 18%;            /* Navy highlights */
+    /* 70/30 Portfolio Colors */
+    --hero-gradient-from: 226 33% 18%;   /* Navy dominant */
+    --hero-gradient-to: 226 33% 22%;     /* Navy variant */
+    --section-bg-navy: 226 33% 18%;      /* Navy sections - 70% */
+    --section-bg-cream: 36 44% 89%;      /* Cream sections - 30% */
+    --highlight: 36 44% 89%;             /* Cream highlights as accent */
     
     /* Typography */
     --font-sans: 'Inter', system-ui, sans-serif;
     --font-display: 'Playfair Display', serif;
     
     /* Shadows & Effects */
-    --shadow-glow: 0 0 50px hsl(226 33% 18% / 0.15);
+    --shadow-glow: 0 0 50px hsl(36 44% 89% / 0.15);
     --shadow-card: 0 10px 40px hsl(226 33% 10% / 0.4);
-    --shadow-soft: 0 4px 20px hsl(36 44% 89% / 0.2);
+    --shadow-soft: 0 4px 20px hsl(226 33% 15% / 0.2);
     
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
