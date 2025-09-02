@@ -74,7 +74,7 @@ const About = () => {
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-slide-up">
               A passionate educator and creative professional dedicated to excellence in 
-              teaching, filmmaking, and artistic expression. Combining technical expertise 
+              Teaching, Filmmaking, and Artistic expression. Combining technical expertise 
               with creative vision to deliver impactful results across diverse projects.
             </p>
           </div>
@@ -123,7 +123,7 @@ const About = () => {
                   </CardContent>
                 </Card>
 
-                <Card className="card-glass">
+                {/* <Card className="card-glass">
                   <CardContent className="p-6">
                     <div className="flex items-start space-x-4">
                       <div className="bg-accent/20 rounded-full p-3">
@@ -135,7 +135,7 @@ const About = () => {
                       </div>
                     </div>
                   </CardContent>
-                </Card>
+                </Card> */}
               </div>
             </div>
           </div>
