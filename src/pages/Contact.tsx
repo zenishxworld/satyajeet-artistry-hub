@@ -1,23 +1,11 @@
-import { useState } from "react";
 import { Mail, Phone, MapPin, Send, User, MessageCircle, Clock, CheckCircle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-    inquiryType: "general"
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
-
   const contactInfo = [
     {
       icon: Phone,
@@ -43,11 +31,10 @@ const Contact = () => {
   ];
 
   const inquiryTypes = [
-    { value: "ielts", label: "IELTS Training Inquiry", icon: "🎯" },
-    { value: "filmmaking", label: "Filmmaking Project", icon: "🎬" },
-    { value: "music", label: "Music Video Collaboration", icon: "🎵" },
-    { value: "workshop", label: "Workshop or Training", icon: "📚" },
-    { value: "general", label: "General Inquiry", icon: "💬" }
+    { value: "Film Collaboration", label: "Film Collaboration", icon: "🎬" },
+    { value: "Music Inquiry", label: "Music Inquiry", icon: "🎵" },
+    { value: "IELTS Training", label: "IELTS Training", icon: "🎯" },
+    { value: "Other", label: "Other", icon: "💬" }
   ];
 
   const services = [
@@ -67,36 +54,6 @@ const Contact = () => {
       features: ["Corporate training", "Academic institutions", "Custom curriculum"]
     }
   ];
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      toast({
-        title: "Message Sent Successfully!",
-        description: "Thank you for your inquiry. I'll get back to you within 24 hours.",
-      });
-      
-      // Reset form
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-        inquiryType: "general"
-      });
-    }, 2000);
-  };
 
   return (
     <main className="pt-20">
@@ -132,7 +89,20 @@ const Contact = () => {
                   </p>
                 </CardHeader>
                 <CardContent>
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <form 
+                    action="https://formsubmit.co/satyajeetshinde178@gmail.com" 
+                    method="POST" 
+                    className="space-y-6"
+                  >
+                    {/* Formsubmit Configuration - Hidden Fields */}
+                    <input type="hidden" name="_subject" value="New Contact Form Submission" />
+                    <input type="hidden" name="_captcha" value="false" />
+                    <input type="hidden" name="_next" value={`${window.location.origin}/contact?success=true`} />
+                    <input type="hidden" name="_template" value="table" />
+                    
+                    {/* Honeypot field for spam protection */}
+                    <input type="text" name="_honey" style={{display: "none"}} />
+
                     {/* Name and Email */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
@@ -140,8 +110,6 @@ const Contact = () => {
                         <Input
                           id="name"
                           name="name"
-                          value={formData.name}
-                          onChange={handleInputChange}
                           required
                           className="bg-background/50"
                           placeholder="Your full name"
@@ -153,8 +121,6 @@ const Contact = () => {
                           id="email"
                           name="email"
                           type="email"
-                          value={formData.email}
-                          onChange={handleInputChange}
                           required
                           className="bg-background/50"
                           placeholder="your.email@example.com"
@@ -168,8 +134,7 @@ const Contact = () => {
                       <select
                         id="inquiryType"
                         name="inquiryType"
-                        value={formData.inquiryType}
-                        onChange={handleInputChange}
+                        defaultValue="Other"
                         className="w-full px-3 py-2 bg-background/50 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-ring"
                       >
                         {inquiryTypes.map((type) => (
@@ -180,28 +145,12 @@ const Contact = () => {
                       </select>
                     </div>
 
-                    {/* Subject */}
-                    <div className="space-y-2">
-                      <Label htmlFor="subject">Subject *</Label>
-                      <Input
-                        id="subject"
-                        name="subject"
-                        value={formData.subject}
-                        onChange={handleInputChange}
-                        required
-                        className="bg-background/50"
-                        placeholder="Brief subject of your message"
-                      />
-                    </div>
-
                     {/* Message */}
                     <div className="space-y-2">
                       <Label htmlFor="message">Message *</Label>
                       <Textarea
                         id="message"
                         name="message"
-                        value={formData.message}
-                        onChange={handleInputChange}
                         required
                         rows={5}
                         className="bg-background/50 resize-none"
@@ -213,20 +162,10 @@ const Contact = () => {
                     <Button 
                       type="submit" 
                       size="lg" 
-                      className="w-full btn-hero" 
-                      disabled={isSubmitting}
+                      className="w-full btn-hero"
                     >
-                      {isSubmitting ? (
-                        <>
-                          <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                          Sending Message...
-                        </>
-                      ) : (
-                        <>
-                          <Send size={18} className="mr-2" />
-                          Send Message
-                        </>
-                      )}
+                      <Send size={18} className="mr-2" />
+                      Send Message
                     </Button>
                   </form>
                 </CardContent>
