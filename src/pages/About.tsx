@@ -5,25 +5,52 @@ import { Badge } from "@/components/ui/badge";
 const About = () => {
   const careerTimeline = [
     {
-      period: "2024",
-      company: "BIMS (Baroda Institute of Management Sciences)",
-      role: "IELTS Trainer & Workshop Conductor",
-      description: "Conducted comprehensive IELTS training programs for aspiring international students",
-      location: "Vadodara, Gujarat"
+      role: "IELTS Faculty",
+      company: "Future Link – Visa Consultants Pvt. Ltd.",
+      period: "Jan 2019 – Present",
+      location: "Vadodara, Gujarat",
+      description:
+        "Conducted IELTS training, grammar classes, mock tests, and one-on-one speaking sessions."
     },
     {
-      period: "2024",
-      company: "SVIT (Sardar Vallabhbhai Institute of Technology)",
-      role: "Workshop Facilitator",
-      description: "Delivered specialized educational workshops and training sessions",
-      location: "Vadodara, Gujarat"
+      role: "Head Faculty",
+      company: "Capri Overseas – Visa Consultants",
+      period: "Sept 2015 – Dec 2018",
+      location: "Vadodara, Gujarat",
+      description:
+        "Delivered IELTS and spoken English lectures, reviewed SOPs, guided students in visa processing, and conducted weekly mocks."
     },
     {
-      period: "2020-2024",
-      company: "Freelance Creative Professional",
-      role: "Filmmaker & Content Creator",
-      description: "Independent filmmaking projects, music videos, and creative content production",
-      location: "Gujarat"
+      role: "IELTS Faculty",
+      company: "Future Link – Visa Consultants Pvt. Ltd.",
+      period: "May 2013 – Aug 2015",
+      location: "Vadodara, Gujarat",
+      description:
+        "Taught IELTS and spoken English, led speaking clubs, and prepared students for visa interviews."
+    },
+    {
+      role: "Counselor, IELTS Faculty & Operations Manager",
+      company: "Beyyond Careers Pvt. Ltd.",
+      period: "Aug 2012 – Mar 2013",
+      location: "Vadodara, Gujarat",
+      description:
+        "Managed the center and taught IELTS, English grammar, and speaking sessions."
+    },
+    {
+      role: "News Analyst",
+      company: "TAM Media Research Pvt. Ltd.",
+      period: "Dec 2010 – May 2012",
+      location: "Vadodara, Gujarat",
+      description:
+        "Monitored news channels, coded and categorized news content, and created backup records."
+    },
+    {
+      role: "English Faculty",
+      company: "ENBEE Education Center",
+      period: "Jun 2008 – May 2010",
+      location: "Vadodara, Gujarat",
+      description:
+        "Conducted spoken English and grammar classes, IELTS speaking sessions, and personality development training."
     }
   ];
 
@@ -147,7 +174,7 @@ const About = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="font-display text-3xl font-bold text-center mb-16">Career Journey</h2>
-            
+
             <div className="space-y-8">
               {careerTimeline.map((item, index) => (
                 <div key={index} className="timeline-item">
@@ -239,13 +266,13 @@ const About = () => {
               >
                 Get In Touch
               </a>
-              <a 
+              {/* <a 
                 href="/resume.pdf" 
                 target="_blank"
                 className="btn-ghost inline-flex items-center justify-center text-center"
               >
                 Download Resume
-              </a>
+              </a> */}
             </div>
           </div>
         </div>

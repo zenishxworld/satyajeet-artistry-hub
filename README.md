@@ -60,6 +60,28 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
+## Contact Form Setup
+
+The contact form uses only Supabase's built-in functionality - no third-party services required!
+
+### How it works:
+1. **Database Storage**: All contact form submissions are stored in the `contacts` table
+2. **Edge Function**: A Supabase Edge Function processes form submissions
+3. **Admin Interface**: View all submissions at `/admin` (you'll need to add this route)
+4. **Logging**: Contact submissions are logged in the Edge Function console for easy monitoring
+
+### Features:
+- ✅ Pure Supabase implementation (no external dependencies)
+- ✅ Automatic database storage of all submissions
+- ✅ Detailed logging for each submission
+- ✅ Admin interface to view and manage contacts
+- ✅ Direct email links for easy follow-up
+
+### Database:
+- The `contacts` table is automatically created via migrations
+- All form submissions are stored with timestamps
+- Row Level Security (RLS) is configured for proper access control
+
 ## How can I deploy this project?
 
 Simply open [Lovable](https://lovable.dev/projects/f2ff6106-820a-4abc-aaa0-12fbcad3648d) and click on Share -> Publish.

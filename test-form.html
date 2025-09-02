@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, select, textarea { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+        button { background: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .result { margin-top: 20px; padding: 10px; border-radius: 4px; }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+    </style>
+</head>
+<body>
+    <h1>Contact Form Test</h1>
+    <form id="contactForm">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="inquiryType">Inquiry Type:</label>
+            <select id="inquiryType" name="inquiryType" required>
+                <option value="IELTS Training">IELTS Training</option>
+                <option value="Film Collaboration">Film Collaboration</option>
+                <option value="Music Inquiry">Music Inquiry</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+        </div>
+        
+        <button type="submit">Send Message</button>
+    </form>
+    
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                inquiryType: document.getElementById('inquiryType').value,
+                message: document.getElementById('message').value
+            };
+            
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<p>Sending...</p>';
+            
+            try {
+                console.log('Sending data:', formData);
+                
+                const response = await fetch('https://cpesvglraqgxnfqfvhyo.supabase.co/functions/v1/send-contact-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNwZXN2Z2xyYXFneG5mcWZ2aHlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY3Nzg5MzAsImV4cCI6MjA3MjM1NDkzMH0.aqx5J_4rl3_uA_Gzka7ayR93W52i2x580oUL2cv7sFA'
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                console.log('Response status:', response.status);
+                const result = await response.json();
+                console.log('Response data:', result);
+                
+                if (response.ok) {
+                    resultDiv.innerHTML = `<div class="result success">Success! ${result.message}</div>`;
+                    document.getElementById('contactForm').reset();
+                } else {
+                    resultDiv.innerHTML = `<div class="result error">Error: ${result.error || 'Unknown error'}</div>`;
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                resultDiv.innerHTML = `<div class="result error">Network Error: ${error.message}</div>`;
+            }
+        });
+    </script>
+</body>
+</html>
