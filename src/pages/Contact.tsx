@@ -4,8 +4,66 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
+  const { toast } = useToast();
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    inquiryType: 'Other',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const { data, error } = await supabase.functions.invoke('send-contact-email', {
+        body: formData
+      });
+
+      if (error) throw error;
+
+      if (data.success) {
+        toast({
+          title: "Message Sent Successfully! ✨",
+          description: "Thank you for reaching out. I'll respond to your inquiry within 24 hours.",
+        });
+        
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          inquiryType: 'Other',
+          message: ''
+        });
+      } else {
+        throw new Error(data.error || 'Failed to send message');
+      }
+    } catch (error: any) {
+      console.error('Form submission error:', error);
+      toast({
+        title: "Error Sending Message",
+        description: error.message || "There was a problem sending your message. Please try again or contact me directly.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   const contactInfo = [
     {
       icon: Phone,
@@ -89,20 +147,7 @@ const Contact = () => {
                   </p>
                 </CardHeader>
                 <CardContent>
-                  <form 
-                    action="https://formsubmit.co/satyajeetshinde178@gmail.com" 
-                    method="POST" 
-                    className="space-y-6"
-                  >
-                    {/* Formsubmit Configuration - Hidden Fields */}
-                    <input type="hidden" name="_subject" value="New Contact Form Submission" />
-                    <input type="hidden" name="_captcha" value="false" />
-                    <input type="hidden" name="_next" value={`${window.location.origin}/contact?success=true`} />
-                    <input type="hidden" name="_template" value="table" />
-                    
-                    {/* Honeypot field for spam protection */}
-                    <input type="text" name="_honey" style={{display: "none"}} />
-
+                  <form onSubmit={handleSubmit} className="space-y-6">
                     {/* Name and Email */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
@@ -110,9 +155,12 @@ const Contact = () => {
                         <Input
                           id="name"
                           name="name"
+                          value={formData.name}
+                          onChange={handleInputChange}
                           required
                           className="bg-background/50"
                           placeholder="Your full name"
+                          disabled={isSubmitting}
                         />
                       </div>
                       <div className="space-y-2">
@@ -121,9 +169,12 @@ const Contact = () => {
                           id="email"
                           name="email"
                           type="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
                           required
                           className="bg-background/50"
                           placeholder="your.email@example.com"
+                          disabled={isSubmitting}
                         />
                       </div>
                     </div>
@@ -134,8 +185,10 @@ const Contact = () => {
                       <select
                         id="inquiryType"
                         name="inquiryType"
-                        defaultValue="Other"
-                        className="w-full px-3 py-2 bg-background/50 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-ring"
+                        value={formData.inquiryType}
+                        onChange={handleInputChange}
+                        className="w-full px-3 py-2 bg-background/50 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-ring disabled:opacity-50"
+                        disabled={isSubmitting}
                       >
                         {inquiryTypes.map((type) => (
                           <option key={type.value} value={type.value}>
@@ -151,10 +204,13 @@ const Contact = () => {
                       <Textarea
                         id="message"
                         name="message"
+                        value={formData.message}
+                        onChange={handleInputChange}
                         required
                         rows={5}
                         className="bg-background/50 resize-none"
                         placeholder="Please provide details about your inquiry, including any specific requirements or questions you may have..."
+                        disabled={isSubmitting}
                       />
                     </div>
 
@@ -163,9 +219,10 @@ const Contact = () => {
                       type="submit" 
                       size="lg" 
                       className="w-full btn-hero"
+                      disabled={isSubmitting}
                     >
                       <Send size={18} className="mr-2" />
-                      Send Message
+                      {isSubmitting ? 'Sending...' : 'Send Message'}
                     </Button>
                   </form>
                 </CardContent>
