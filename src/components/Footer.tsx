@@ -1,19 +1,20 @@
 import { Link } from "react-router-dom";
-import { Mail, Phone, MapPin, Film, Music, GraduationCap, Heart } from "lucide-react";
+import { Mail, Phone, MapPin, Film, Music, Heart } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const navigationLinks = [
+    { name: "Home", path: "/" },
     { name: "About", path: "/about" },
-    { name: "Filmography", path: "/filmography" },
+    { name: "Career Journey", path: "/career-journey" },
     { name: "Music Projects", path: "/music" },
-    { name: "Workshops", path: "/workshops" },
+    { name: "Filmography", path: "/filmography" },
     { name: "Contact", path: "/contact" }
   ];
 
   const services = [
-    { name: "Training & Development", icon: GraduationCap },
+    { name: "Training & Development", icon: Film },
     { name: "Film Production", icon: Film },
     { name: "Music Videos", icon: Music }
   ];

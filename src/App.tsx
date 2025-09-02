@@ -7,9 +7,9 @@ import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import Index from "./pages/Index";
 import About from "./pages/About";
+import CareerJourney from "./pages/CareerJourney";
 import Filmography from "./pages/Filmography";
 import Music from "./pages/Music";
-import Workshops from "./pages/Workshops";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
@@ -27,9 +27,10 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/about" element={<About />} />
-              <Route path="/filmography" element={<Filmography />} />
+              <Route path="/career-journey" element={<CareerJourney />} />
               <Route path="/music" element={<Music />} />
-              <Route path="/workshops" element={<Workshops />} />
+              <Route path="/filmography" element={<Filmography />} />
+              {/* <Route path="/workshops" element={<Workshops />} /> */}
               <Route path="/contact" element={<Contact />} />
               <Route path="*" element={<NotFound />} />
             </Routes>

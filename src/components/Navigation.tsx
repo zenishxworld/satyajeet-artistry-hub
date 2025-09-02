@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Film, Music, GraduationCap, User, Home, Mail } from "lucide-react";
+import { Menu, X, Film, Music, User, Home, Mail, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Navigation = () => {
@@ -11,9 +11,9 @@ const Navigation = () => {
   const navigationItems = [
     { name: "Home", path: "/", icon: Home },
     { name: "About", path: "/about", icon: User },
-    { name: "Filmography", path: "/filmography", icon: Film },
+    { name: "Career Journey", path: "/career-journey", icon: Briefcase },
     { name: "Music", path: "/music", icon: Music },
-    { name: "Workshops", path: "/workshops", icon: GraduationCap },
+    { name: "Filmography", path: "/filmography", icon: Film },
     { name: "Contact", path: "/contact", icon: Mail },
   ];
 

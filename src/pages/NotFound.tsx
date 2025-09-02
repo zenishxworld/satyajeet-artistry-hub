@@ -46,8 +46,6 @@ const NotFound = () => {
             <span className="text-muted-foreground">•</span>
             <Link to="/music" className="text-primary hover:underline text-sm">Music</Link>
             <span className="text-muted-foreground">•</span>
-            <Link to="/workshops" className="text-primary hover:underline text-sm">Workshops</Link>
-            <span className="text-muted-foreground">•</span>
             <Link to="/contact" className="text-primary hover:underline text-sm">Contact</Link>
           </div>
         </div>

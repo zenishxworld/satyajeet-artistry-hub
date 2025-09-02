@@ -106,11 +106,7 @@ const Contact = () => {
       description: "Professional video production and creative direction",
       features: ["Music videos", "Short films", "Documentary production"]
     },
-    {
-      title: "Educational Workshops",
-      description: "English language and communication skills training",
-      features: ["Corporate training", "Academic institutions", "Custom curriculum"]
-    }
+    // Workshops temporarily removed
   ];
 
   return (
@@ -123,8 +119,7 @@ const Contact = () => {
               Get In Touch
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-slide-up">
-              Ready to start your IELTS journey, collaborate on a creative project, or inquire about workshops? 
-              I'm here to help bring your vision to life.
+              Ready to start your IELTS journey or collaborate on a creative project? I'm here to help bring your vision to life.
             </p>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ChevronRight, Film, Music, GraduationCap, Calendar, Play, ArrowRight } from "lucide-react";
+import { ChevronRight, Film, Music, Calendar, Play, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import heroImage from "@/assets/hero-bg.jpg";
@@ -7,13 +7,7 @@ import heroImage from "@/assets/hero-bg.jpg";
 // Portfolio homepage for Satyajeet Shinde
 const Index = () => {
   const categories = [
-    {
-      title: "Training & Devlopmnt",
-      description: "Professional IELTS | PTE | TOEFL | DUOLINGO coaching and language training workshops across leading institutions.",
-      icon: GraduationCap,
-      link: "/workshops",
-      accent: "text-success",
-    },
+    // Workshops temporarily removed
     {
       title: "Filmography",
       description: "Cinematic storytelling through Direction, Acting, Screenplay Writing and Cinematography across diverse projects.",
@@ -38,14 +32,6 @@ const Index = () => {
       description: "A heartfelt music video exploring life's journey",
       image: "/placeholder-music.jpg",
       link: "https://youtu.be/ZwmgMYfTQ4A",
-    },
-    {
-      title: "IELTS Success Program",
-      category: "Workshop",
-      date: "2024",
-      description: "Comprehensive IELTS training at leading institutes",
-      image: "/placeholder-workshop.jpg",
-      link: "/workshops",
     },
     {
       title: "Latest Film Project",
