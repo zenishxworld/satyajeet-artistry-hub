@@ -1,8 +1,6 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.56.1';
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.56.1";
 import { Resend } from "npm:resend@2.0.0";
-
-const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -24,76 +22,91 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
+    const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
+    const supabaseKey = Deno.env.get('SUPABASE_ANON_KEY')!;
+    const resendApiKey = Deno.env.get('RESEND_API_KEY')!;
+
+    if (!resendApiKey) {
+      throw new Error('RESEND_API_KEY is not configured');
+    }
+
+    const supabase = createClient(supabaseUrl, supabaseKey);
+    const resend = new Resend(resendApiKey);
+
     const { name, email, inquiryType, message }: ContactFormRequest = await req.json();
 
-    // Initialize Supabase client
-    const supabaseUrl = Deno.env.get('SUPABASE_URL') ?? '';
-    const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY') ?? '';
-    const supabase = createClient(supabaseUrl, supabaseAnonKey);
+    // Validate required fields
+    if (!name || !email || !inquiryType || !message) {
+      return new Response(
+        JSON.stringify({ error: 'All fields are required' }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
 
-    // Store the contact submission in the database
-    const { error: dbError } = await supabase
+    console.log('Processing contact form submission:', { name, email, inquiryType });
+
+    // Store in database
+    const { data: contactData, error: dbError } = await supabase
       .from('contacts')
-      .insert({
-        name,
-        email,
-        inquiry_type: inquiryType,
-        message
-      });
+      .insert([
+        {
+          name,
+          email,
+          inquiry_type: inquiryType,
+          message
+        }
+      ])
+      .select()
+      .single();
 
     if (dbError) {
       console.error('Database error:', dbError);
       throw new Error(`Database error: ${dbError.message}`);
     }
 
-    // Send email notification to Satyajeet
+    console.log('Contact saved to database:', contactData);
+
+    // Send email via Resend
     const emailResponse = await resend.emails.send({
-      from: 'SS Portfolio Contact Form <onboarding@resend.dev>',
+      from: 'Portfolio Contact Form <onboarding@resend.dev>',
       to: ['satyajeetshinde178@gmail.com'],
       subject: `New Contact Form Submission - ${inquiryType}`,
       html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f8f9fa; border-radius: 8px;">
-          <div style="background-color: #ffffff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-            <h1 style="color: #333; border-bottom: 3px solid #7c3aed; padding-bottom: 10px; margin-bottom: 25px;">
-              🎬 New Contact Form Submission
-            </h1>
-            
-            <div style="margin-bottom: 20px;">
-              <h3 style="color: #7c3aed; margin-bottom: 8px;">👤 Contact Information</h3>
-              <p style="margin: 5px 0; color: #555;"><strong>Name:</strong> ${name}</p>
-              <p style="margin: 5px 0; color: #555;"><strong>Email:</strong> ${email}</p>
-            </div>
-            
-            <div style="margin-bottom: 20px;">
-              <h3 style="color: #7c3aed; margin-bottom: 8px;">📝 Inquiry Details</h3>
-              <p style="margin: 5px 0; color: #555;"><strong>Type:</strong> ${inquiryType}</p>
-            </div>
-            
-            <div style="margin-bottom: 20px;">
-              <h3 style="color: #7c3aed; margin-bottom: 8px;">💬 Message</h3>
-              <div style="background-color: #f1f5f9; padding: 15px; border-left: 4px solid #7c3aed; border-radius: 4px;">
-                <p style="margin: 0; color: #334155; line-height: 1.6;">${message.replace(/\n/g, '<br>')}</p>
-              </div>
-            </div>
-            
-            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e2e8f0; text-align: center;">
-              <p style="color: #64748b; font-size: 14px; margin: 0;">
-                This message was sent via your portfolio contact form at ${new Date().toLocaleString()}
-              </p>
-            </div>
+        <h1>New Contact Form Submission</h1>
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2>Contact Details:</h2>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Type of Inquiry:</strong> ${inquiryType}</p>
+          
+          <h2>Message:</h2>
+          <div style="background-color: #f5f5f5; padding: 15px; border-radius: 5px;">
+            ${message.replace(/\n/g, '<br>')}
           </div>
+          
+          <hr style="margin: 20px 0;">
+          <p style="font-size: 12px; color: #666;">
+            This message was sent via your portfolio contact form.
+          </p>
         </div>
       `,
     });
 
-    console.log("Email sent successfully:", emailResponse);
+    if (emailResponse.error) {
+      console.error('Email sending error:', emailResponse.error);
+      throw new Error(`Email sending failed: ${emailResponse.error.message}`);
+    }
+
+    console.log('Email sent successfully:', emailResponse);
 
     return new Response(
-      JSON.stringify({ 
-        success: true,
-        message: "Contact form submitted successfully! Thank you for your message.",
-        emailId: emailResponse.data?.id
-      }), 
+      JSON.stringify({
+        message: 'Contact form submitted successfully',
+        id: contactData.id
+      }),
       {
         status: 200,
         headers: {
@@ -102,14 +115,10 @@ const handler = async (req: Request): Promise<Response> => {
         },
       }
     );
-    
   } catch (error: any) {
     console.error("Error in send-contact-email function:", error);
     return new Response(
-      JSON.stringify({ 
-        success: false,
-        error: error.message || "An error occurred while processing your request"
-      }),
+      JSON.stringify({ error: error.message }),
       {
         status: 500,
         headers: { "Content-Type": "application/json", ...corsHeaders },

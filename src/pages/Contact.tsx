@@ -37,9 +37,9 @@ const Contact = () => {
 
       if (error) throw error;
 
-      if (data.success) {
+      if (data && data.message) {
         toast({
-          title: "Message Sent Successfully! ✨",
+          title: "Message Sent Successfully! ✨", 
           description: "Thank you for reaching out. I'll respond to your inquiry within 24 hours.",
         });
         
@@ -51,7 +51,7 @@ const Contact = () => {
           message: ''
         });
       } else {
-        throw new Error(data.error || 'Failed to send message');
+        throw new Error(data?.error || 'Failed to send message');
       }
     } catch (error: any) {
       console.error('Form submission error:', error);
