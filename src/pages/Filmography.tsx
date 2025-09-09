@@ -8,6 +8,7 @@ const Filmography = () => {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
 
   const filmProjects = [
+    // Existing demo projects
     {
       title: "Meri Zindagi",
       year: "2024",
@@ -45,6 +46,100 @@ const Filmography = () => {
       youtubeId: "dQw4w9WgXcQ", // Placeholder - replace with actual video ID
       cast: ["Satyajeet Shinde", "Local Actors"],
       crew: ["Co-Director: Satyajeet Shinde", "Cinematography: Team", "Sound: Post-Production Team"],
+      awards: [],
+    },
+    // Real filmography entries
+    {
+      title: "Inse Milye",
+      year: "2024",
+      role: "Actor, Cinematographer",
+      genre: "Short Film",
+      duration: "N/A",
+      location: "Vadodara, Gujarat",
+      description: "A short film portraying a heartfelt narrative with strong visuals and emotional depth.",
+      youtubeId: "1HqRPRkodnc",
+      cast: ["Satyajeet Shinde"],
+      crew: ["Actor: Satyajeet Shinde", "Cinematographer: Satyajeet Shinde"],
+      awards: [],
+    },
+    {
+      title: "Shaurya – Scene Reenactment",
+      year: "2024",
+      role: "Brigadier Rudra Pratap Singh (Actor)",
+      genre: "Scene Reenactment",
+      duration: "N/A",
+      location: "Vadodara, Gujarat",
+      description: "A powerful scene reenactment from the movie Shaurya, showcasing leadership, courage, and performance.",
+      youtubeId: "AL4mX3qdVUw",
+      cast: ["Satyajeet Shinde"],
+      crew: ["Actor: Satyajeet Shinde"],
+      awards: [],
+    },
+    {
+      title: "The Last Chance",
+      year: "2024",
+      role: "Actor",
+      genre: "Short Film",
+      duration: "N/A",
+      location: "Vadodara, Gujarat",
+      description: "A dramatic short film exploring decisions, regret, and redemption.",
+      youtubeId: "leu7TSJ6oAo",
+      cast: ["Satyajeet Shinde"],
+      crew: ["Actor: Satyajeet Shinde"],
+      awards: [],
+    },
+    {
+      title: "Rangeen",
+      year: "2024",
+      role: "Actor",
+      genre: "Short Film",
+      duration: "N/A",
+      location: "Vadodara, Gujarat",
+      description: "A vibrant short film with colorful storytelling and dynamic expressions.",
+      youtubeId: "y0Mu4MoLpak",
+      cast: ["Satyajeet Shinde"],
+      crew: ["Actor: Satyajeet Shinde"],
+      awards: [],
+    },
+    {
+      title: "Screwed",
+      year: "2024",
+      role: "Actor, Cinematographer",
+      genre: "Short Film",
+      duration: "N/A",
+      location: "Vadodara, Gujarat",
+      description: "A gritty short film capturing intense emotions with stunning cinematography.",
+      youtubeId: "eBqeUcmq3xE",
+      cast: ["Satyajeet Shinde"],
+      crew: ["Actor: Satyajeet Shinde", "Cinematographer: Satyajeet Shinde"],
+      awards: [],
+    },
+    {
+      title: "Future Link – Official Ad Film",
+      year: "2024",
+      role: "Director, Concept Creator",
+      genre: "Advertisement",
+      duration: "N/A",
+      location: "Vadodara, Gujarat",
+      description: "A corporate ad film promoting the values and vision of Future Link Consultants.",
+      youtubeId: "w--NEqPjzEk",
+      cast: [],
+      crew: ["Director: Satyajeet Shinde", "Concept: Satyajeet Shinde"],
+      awards: [],
+    },
+    {
+      title: "SVIT Workshop Recap",
+      year: "2023",
+      role: "Workshop Conductor & Filmmaking Mentor",
+      genre: "Workshop Documentation",
+      duration: "N/A",
+      location: "Vasad, Gujarat",
+      description: "A 5-day filmmaking workshop conducted at SVIT, showcasing hands-on film training for students.",
+      youtubeId: null, // Facebook video
+      facebookEmbed: true,
+      facebookUrl: "https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fvarun.vasava%2Fvideos%2F721789507852026%2F&show_text=0&width=400",
+      cast: ["SVIT Students"],
+      crew: ["Workshop Conductor: Satyajeet Shinde", "Filmmaking Mentor: Satyajeet Shinde"],
       awards: [],
     }
   ];
@@ -85,13 +180,26 @@ const Filmography = () => {
                     >
                       {selectedProject === index ? (
                         <div className="video-container absolute inset-4">
-                          <iframe
-                            src={`https://www.youtube.com/embed/${project.youtubeId}?autoplay=1`}
-                            title={project.title}
-                            frameBorder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                          />
+                          {project.facebookEmbed ? (
+                            <iframe
+                              src={project.facebookUrl}
+                              width="100%"
+                              height="100%"
+                              style={{ border: 'none', overflow: 'hidden' }}
+                              scrolling="no"
+                              frameBorder="0"
+                              allowTransparency={true}
+                              allowFullScreen={true}
+                            />
+                          ) : (
+                            <iframe
+                              src={`https://www.youtube.com/embed/${project.youtubeId}?autoplay=1`}
+                              title={project.title}
+                              frameBorder="0"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                              allowFullScreen
+                            />
+                          )}
                         </div>
                       ) : (
                         <>
