@@ -91,6 +91,7 @@ const Contact = () => {
   const inquiryTypes = [
     { value: "Film Collaboration", label: "Film Collaboration", icon: "🎬" },
     { value: "Music Inquiry", label: "Music Inquiry", icon: "🎵" },
+    { value: "Photography", label: "Photography", icon: "📷" },
     { value: "IELTS Training", label: "IELTS Training", icon: "🎯" },
     { value: "Other", label: "Other", icon: "💬" }
   ];

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Mail, Phone, MapPin, Film, Music, Heart } from "lucide-react";
+import { Mail, Phone, MapPin, Film, Music, Heart, Camera } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -10,6 +10,7 @@ const Footer = () => {
     { name: "Career Journey", path: "/career-journey" },
     { name: "Music Projects", path: "/music" },
     { name: "Filmography", path: "/filmography" },
+    { name: "Photography", path: "/photography" },
     { name: "Contact", path: "/contact" }
   ];
 
