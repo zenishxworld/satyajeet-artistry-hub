@@ -5,13 +5,25 @@ import { Button } from "@/components/ui/button";
 const Photography = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-  // Add your image filenames here - just update this array to add more images
   const photos = [
-    { filename: "nature1.jpg", alt: "Nature photography by Satyajeet Shinde" },
-    { filename: "cityscape.jpg", alt: "Cityscape photography by Satyajeet Shinde" },
-    { filename: "portrait1.jpg", alt: "Portrait photography by Satyajeet Shinde" },
-    // Add more images here following the same pattern
-    // { filename: "your-image.jpg", alt: "Description" },
+    { filename: "IMG_9177.JPG", alt: "Photography by Satyajeet Shinde" },
+    { filename: "IMG_9178.JPG", alt: "Photography by Satyajeet Shinde" },
+    { filename: "IMG_9179.JPG", alt: "Photography by Satyajeet Shinde" },
+    { filename: "IMG_9180.JPG", alt: "Photography by Satyajeet Shinde" },
+    { filename: "IMG_9181.JPG", alt: "Photography by Satyajeet Shinde" },
+    { filename: "IMG_9182.JPG", alt: "Photography by Satyajeet Shinde" },
+    { filename: "IMG_9183.JPG", alt: "Photography by Satyajeet Shinde" },
+    { filename: "IMG_9184.JPG", alt: "Photography by Satyajeet Shinde" },
+    { filename: "IMG_9185.JPG", alt: "Photography by Satyajeet Shinde" },
+    { filename: "IMG_9187.JPG", alt: "Photography by Satyajeet Shinde" },
+    { filename: "IMG_9188.JPG", alt: "Photography by Satyajeet Shinde" },
+    { filename: "IMG_9189.JPG", alt: "Photography by Satyajeet Shinde" },
+    { filename: "IMG_9190.JPG", alt: "Photography by Satyajeet Shinde" },
+    { filename: "IMG_9191.JPG", alt: "Photography by Satyajeet Shinde" },
+    { filename: "IMG_9192.JPG", alt: "Photography by Satyajeet Shinde" },
+    { filename: "IMG_9193.JPG", alt: "Photography by Satyajeet Shinde" },
+    { filename: "IMG_9194.JPG", alt: "Photography by Satyajeet Shinde" },
+    { filename: "IMG_9196.JPG", alt: "Photography by Satyajeet Shinde" },
   ];
 
   const openImage = (filename: string) => {
