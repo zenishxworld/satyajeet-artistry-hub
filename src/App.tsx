@@ -10,6 +10,7 @@ import About from "./pages/About";
 import CareerJourney from "./pages/CareerJourney";
 import Filmography from "./pages/Filmography";
 import Music from "./pages/Music";
+import Photography from "./pages/Photography";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
@@ -30,6 +31,7 @@ const App = () => (
               <Route path="/career-journey" element={<CareerJourney />} />
               <Route path="/music" element={<Music />} />
               <Route path="/filmography" element={<Filmography />} />
+              <Route path="/photography" element={<Photography />} />
               {/* <Route path="/workshops" element={<Workshops />} /> */}
               <Route path="/contact" element={<Contact />} />
               <Route path="*" element={<NotFound />} />
