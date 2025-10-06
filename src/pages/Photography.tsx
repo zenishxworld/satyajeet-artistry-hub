@@ -6,7 +6,7 @@ const Photography = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const photos = [
-    { filename: "IMG_9177.JPG", alt: "Photography by Satyajeet Shinde" },
+    // { filename: "IMG_9177.JPG", alt: "Photography by Satyajeet Shinde" },
     { filename: "IMG_9178.JPG", alt: "Photography by Satyajeet Shinde" },
     { filename: "IMG_9179.JPG", alt: "Photography by Satyajeet Shinde" },
     { filename: "IMG_9180.JPG", alt: "Photography by Satyajeet Shinde" },
@@ -19,7 +19,7 @@ const Photography = () => {
     { filename: "IMG_9188.JPG", alt: "Photography by Satyajeet Shinde" },
     { filename: "IMG_9189.JPG", alt: "Photography by Satyajeet Shinde" },
     { filename: "IMG_9190.JPG", alt: "Photography by Satyajeet Shinde" },
-    { filename: "IMG_9191.JPG", alt: "Photography by Satyajeet Shinde" },
+    // { filename: "IMG_9191.JPG", alt: "Photography by Satyajeet Shinde" },
     { filename: "IMG_9192.JPG", alt: "Photography by Satyajeet Shinde" },
     { filename: "IMG_9193.JPG", alt: "Photography by Satyajeet Shinde" },
     { filename: "IMG_9194.JPG", alt: "Photography by Satyajeet Shinde" },
@@ -40,9 +40,6 @@ const Photography = () => {
       <section className="py-20 bg-gradient-to-br from-background to-card">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="flex items-center justify-center mb-6">
-              <Camera size={48} className="text-primary animate-fade-in" />
-            </div>
             <h1 className="font-display text-4xl md:text-6xl font-bold mb-6 animate-fade-in">
               Photography
             </h1>
@@ -83,7 +80,6 @@ const Photography = () => {
             {/* Empty State Message */}
             {photos.length === 0 && (
               <div className="text-center py-20">
-                <Camera size={64} className="mx-auto text-muted-foreground mb-4" />
                 <p className="text-xl text-muted-foreground">
                   Photo gallery coming soon. Add images to /assets/photography/ folder.
                 </p>
