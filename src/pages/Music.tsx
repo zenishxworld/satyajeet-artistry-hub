@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Play, Calendar, Music as MusicIcon, Heart, Eye } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -6,6 +6,18 @@ import { Button } from "@/components/ui/button";
 
 const Music = () => {
   const [selectedVideo, setSelectedVideo] = useState<number | null>(null);
+  
+  // Load Instagram embed script
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = '//www.instagram.com/embed.js';
+    document.body.appendChild(script);
+    
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   const musicProjects = [
     {
@@ -233,8 +245,160 @@ const Music = () => {
         </div>
       </section>
 
-      {/* Other Music Projects */}
+      {/* Instagram Videos */}
       <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="font-display text-3xl font-bold text-center mb-12">Instagram Reels</h2>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* Instagram Video 1 - 9:16 aspect ratio */}
+              <div className="relative aspect-[9/16] overflow-hidden rounded-lg card-hover">
+                <div className="w-full h-full flex items-center justify-center">
+                  <blockquote 
+                    className="instagram-media w-full h-full" 
+                    data-instgrm-captioned
+                    data-instgrm-permalink="https://www.instagram.com/reel/C6rURPSCVIs/?utm_source=ig_embed&utm_campaign=loading"
+                    data-instgrm-version="14"
+                    style={{ 
+                      background: '#FFF', 
+                      border: '0', 
+                      borderRadius: '3px', 
+                      boxShadow: '0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15)', 
+                      margin: '0', 
+                      padding: '0', 
+                      width: '100%',
+                      height: '100%'
+                    }}
+                  >
+                  </blockquote>
+                </div>
+              </div>
+              
+              {/* Instagram Video 2 - 9:16 aspect ratio */}
+              <div className="relative aspect-[9/16] overflow-hidden rounded-lg card-hover">
+                <div className="w-full h-full flex items-center justify-center">
+                  <blockquote 
+                    className="instagram-media w-full h-full" 
+                    data-instgrm-captioned
+                    data-instgrm-permalink="https://www.instagram.com/reel/DMqBD9OTmIa/?utm_source=ig_embed&utm_campaign=loading"
+                    data-instgrm-version="14"
+                    style={{ 
+                      background: '#FFF', 
+                      border: '0', 
+                      borderRadius: '3px', 
+                      boxShadow: '0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15)', 
+                      margin: '0', 
+                      padding: '0', 
+                      width: '100%',
+                      height: '100%'
+                    }}
+                  >
+                  </blockquote>
+                </div>
+              </div>
+
+              {/* Instagram Video 3 - 9:16 aspect ratio */}
+              <div className="relative aspect-[9/16] overflow-hidden rounded-lg card-hover">
+                <div className="w-full h-full flex items-center justify-center">
+                  <blockquote 
+                    className="instagram-media w-full h-full" 
+                    data-instgrm-captioned
+                    data-instgrm-permalink="https://www.instagram.com/reel/CbUxND4pcJY/?utm_source=ig_embed&utm_campaign=loading"
+                    data-instgrm-version="14"
+                    style={{ 
+                      background: '#FFF', 
+                      border: '0', 
+                      borderRadius: '3px', 
+                      boxShadow: '0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15)', 
+                      margin: '0', 
+                      padding: '0', 
+                      width: '100%',
+                      height: '100%'
+                    }}
+                  >
+                  </blockquote>
+                </div>
+              </div>
+
+              {/* Instagram Video 4 - 9:16 aspect ratio */}
+              <div className="relative aspect-[9/16] overflow-hidden rounded-lg card-hover">
+                <div className="w-full h-full flex items-center justify-center">
+                  <blockquote 
+                    className="instagram-media w-full h-full" 
+                    data-instgrm-captioned
+                    data-instgrm-permalink="https://www.instagram.com/reel/CmcBeBDgOLZ/?utm_source=ig_embed&utm_campaign=loading"
+                    data-instgrm-version="14"
+                    style={{ 
+                      background: '#FFF', 
+                      border: '0', 
+                      borderRadius: '3px', 
+                      boxShadow: '0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15)', 
+                      margin: '0', 
+                      padding: '0', 
+                      width: '100%',
+                      height: '100%'
+                    }}
+                  >
+                  </blockquote>
+                </div>
+              </div>
+
+              {/* Instagram Video 5 - 9:16 aspect ratio */}
+              <div className="relative aspect-[9/16] overflow-hidden rounded-lg card-hover">
+                <div className="w-full h-full flex items-center justify-center">
+                  <blockquote 
+                    className="instagram-media w-full h-full" 
+                    data-instgrm-captioned
+                    data-instgrm-permalink="https://www.instagram.com/reel/CtMrbioAcWQ/?utm_source=ig_embed&utm_campaign=loading"
+                    data-instgrm-version="14"
+                    style={{ 
+                      background: '#FFF', 
+                      border: '0', 
+                      borderRadius: '3px', 
+                      boxShadow: '0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15)', 
+                      margin: '0', 
+                      padding: '0', 
+                      width: '100%',
+                      height: '100%'
+                    }}
+                  >
+                  </blockquote>
+                </div>
+              </div>
+              
+              {/* Instagram Video 6 - 9:16 aspect ratio */}
+              <div className="relative aspect-[9/16] overflow-hidden rounded-lg card-hover">
+                <div className="w-full h-full flex items-center justify-center">
+                  <blockquote 
+                    className="instagram-media w-full h-full" 
+                    data-instgrm-captioned
+                    data-instgrm-permalink="https://www.instagram.com/reel/C0yxQ70JqBA/?utm_source=ig_embed&utm_campaign=loading"
+                    data-instgrm-version="14"
+                    style={{ 
+                      background: '#FFF', 
+                      border: '0', 
+                      borderRadius: '3px', 
+                      boxShadow: '0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15)', 
+                      margin: '0', 
+                      padding: '0', 
+                      width: '100%',
+                      height: '100%'
+                    }}
+                  >
+                  </blockquote>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+
+
+      {/* <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <h2 className="font-display text-3xl font-bold text-center mb-12">Other Projects</h2>
@@ -301,7 +465,7 @@ const Music = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Music Video Skills */}
       <section className="py-20 bg-card">

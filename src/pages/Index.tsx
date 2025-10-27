@@ -74,7 +74,7 @@ const Index = () => {
             </Button>
             <Button variant="outline" size="lg" className="btn-ghost">
               <Link to="/contact" className="flex items-center space-x-2">
-                <span>Get In Touch</span>
+                <span>Get Touch</span>
                 <ArrowRight size={18} />
               </Link>
             </Button>
