@@ -1,21 +1,59 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Play, Calendar, Music as MusicIcon, Heart, Eye } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
+// Extend Window interface to include Instagram embed API
+declare global {
+  interface Window {
+    instgrm?: {
+      Embeds: {
+        process: () => void;
+      };
+    };
+  }
+}
+
 const Music = () => {
   const [selectedVideo, setSelectedVideo] = useState<number | null>(null);
   
-  // Load Instagram embed script
+  // Load Instagram embed script and process embeds
   useEffect(() => {
-    const script = document.createElement('script');
-    script.async = true;
-    script.src = '//www.instagram.com/embed.js';
-    document.body.appendChild(script);
+    // Function to load and process Instagram embeds
+    const loadInstagramEmbeds = () => {
+      // Remove any existing script first
+      const existingScript = document.getElementById('instagram-embed-script');
+      if (existingScript) {
+        document.body.removeChild(existingScript);
+      }
+      
+      // Create and add the script
+      const script = document.createElement('script');
+      script.id = 'instagram-embed-script';
+      script.async = true;
+      script.src = '//www.instagram.com/embed.js';
+      
+      // Process embeds after script loads
+      script.onload = () => {
+        if (window.instgrm) {
+          window.instgrm.Embeds.process();
+        }
+      };
+      
+      document.body.appendChild(script);
+    };
     
+    // Load embeds when component mounts
+    loadInstagramEmbeds();
+    
+    // Clean up function
     return () => {
-      document.body.removeChild(script);
+      const script = document.getElementById('instagram-embed-script');
+      if (script) {
+        document.body.removeChild(script);
+      }
     };
   }, []);
 
@@ -115,146 +153,25 @@ const Music = () => {
         </div>
       </section>
 
-      {/* Featured Music Video - Meri Zindagi */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="font-display text-3xl font-bold mb-4">Featured: Meri Zindagi</h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                A heartfelt exploration of life's journey through music and visuals
-              </p>
-            </div>
 
-            <Card className="overflow-hidden card-hover">
-              <div className="grid grid-cols-1 xl:grid-cols-3 gap-0">
-                {/* Video Section */}
-                <div className="xl:col-span-2">
-                  <div 
-                    className="relative h-64 md:h-96 bg-gradient-to-br from-accent/20 to-primary/20 flex items-center justify-center cursor-pointer group"
-                    onClick={() => handleVideoClick(0)}
-                  >
-                    {selectedVideo === 0 ? (
-                      <div className="video-container absolute inset-4">
-                        <iframe
-                          src={`https://www.youtube.com/embed/${musicProjects[0].youtubeId}?autoplay=1`}
-                          title={musicProjects[0].title}
-                          frameBorder="0"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                        />
-                      </div>
-                    ) : (
-                      <>
-                        <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors" />
-                        <Play size={64} className="text-white z-10 group-hover:scale-110 transition-transform" />
-                        <div className="absolute top-6 left-6">
-                          <Badge className="bg-accent text-accent-foreground">
-                            {musicProjects[0].genre}
-                          </Badge>
-                        </div>
-                        <div className="absolute bottom-6 right-6">
-                          <Badge variant="secondary" className="bg-black/60 text-white">
-                            {musicProjects[0].duration}
-                          </Badge>
-                        </div>
-                      </>
-                    )}
-                  </div>
-                </div>
 
-                {/* Details Section */}
-                <div className="p-6 lg:p-8 bg-card">
-                  <CardHeader className="p-0 mb-6">
-                    <CardTitle className="font-display text-2xl mb-2">
-                      {musicProjects[0].title}
-                    </CardTitle>
-                    <p className="text-primary font-medium">{musicProjects[0].artist}</p>
-                    <p className="text-sm text-muted-foreground">{musicProjects[0].year}</p>
-                  </CardHeader>
 
-                  <CardContent className="p-0 space-y-6">
-                    <p className="text-muted-foreground leading-relaxed">
-                      {musicProjects[0].description}
-                    </p>
-
-                    {/* Stats */}
-                    <div className="grid grid-cols-3 gap-4 p-4 bg-background/50 rounded-lg">
-                      <div className="text-center">
-                        <p className="font-semibold text-lg">{musicProjects[0].stats.views}</p>
-                        <p className="text-xs text-muted-foreground">Views</p>
-                      </div>
-                      <div className="text-center">
-                        <p className="font-semibold text-lg">{musicProjects[0].stats.likes}</p>
-                        <p className="text-xs text-muted-foreground">Likes</p>
-                      </div>
-                      <div className="text-center">
-                        <p className="font-semibold text-lg">{musicProjects[0].stats.comments}</p>
-                        <p className="text-xs text-muted-foreground">Comments</p>
-                      </div>
-                    </div>
-
-                    <Button 
-                      onClick={() => handleVideoClick(0)}
-                      className="w-full"
-                    >
-                      {selectedVideo === 0 ? "Close Video" : "Watch Now"}
-                    </Button>
-                  </CardContent>
-                </div>
-              </div>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Behind the Scenes */}
-      <section className="py-20 bg-card">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="font-display text-3xl font-bold text-center mb-12">Behind the Scenes</h2>
-            
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              {/* Production Process */}
-              <div>
-                <h3 className="font-display text-xl font-semibold mb-6">Production Highlights</h3>
-                <div className="space-y-4">
-                  {musicProjects[0].behindTheScenes.map((highlight, index) => (
-                    <div key={index} className="flex items-start space-x-3">
-                      <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0" />
-                      <p className="text-muted-foreground">{highlight}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Production Details */}
-              <div>
-                <h3 className="font-display text-xl font-semibold mb-6">Production Credits</h3>
-                <div className="space-y-3">
-                  {Object.entries(musicProjects[0].productionDetails).map(([role, person]) => (
-                    <div key={role} className="flex justify-between items-center py-2 border-b border-border/50 last:border-0">
-                      <span className="font-medium capitalize">{role.replace(/([A-Z])/g, ' $1').trim()}</span>
-                      <span className="text-muted-foreground">{person}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Instagram Videos */}
-      <section className="py-20">
+      <section className="py-20 bg-gradient-to-b from-background to-muted">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="font-display text-3xl font-bold text-center mb-12">Instagram Reels</h2>
+            <h2 className="font-display text-3xl font-bold text-center mb-4">Instagram Reels</h2>
+            <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">Check out my latest music moments and behind-the-scenes clips</p>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10 p-2">
+              {/* Decorative elements */}
+              <div className="absolute -top-10 -left-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl"></div>
+              <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl"></div>
+              
               {/* Instagram Video 1 - 9:16 aspect ratio */}
-              <div className="relative aspect-[9/16] overflow-hidden rounded-lg card-hover">
-                <div className="w-full h-full flex items-center justify-center">
+              <div className="relative aspect-[9/16] overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                <div className="w-full h-full flex items-center justify-center bg-black/5">
                   <blockquote 
                     className="instagram-media w-full h-full" 
                     data-instgrm-captioned
@@ -276,8 +193,8 @@ const Music = () => {
               </div>
               
               {/* Instagram Video 2 - 9:16 aspect ratio */}
-              <div className="relative aspect-[9/16] overflow-hidden rounded-lg card-hover">
-                <div className="w-full h-full flex items-center justify-center">
+              <div className="relative aspect-[9/16] overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                <div className="w-full h-full flex items-center justify-center bg-black/5">
                   <blockquote 
                     className="instagram-media w-full h-full" 
                     data-instgrm-captioned
@@ -299,8 +216,8 @@ const Music = () => {
               </div>
 
               {/* Instagram Video 3 - 9:16 aspect ratio */}
-              <div className="relative aspect-[9/16] overflow-hidden rounded-lg card-hover">
-                <div className="w-full h-full flex items-center justify-center">
+              <div className="relative aspect-[9/16] overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                <div className="w-full h-full flex items-center justify-center bg-black/5">
                   <blockquote 
                     className="instagram-media w-full h-full" 
                     data-instgrm-captioned
@@ -502,9 +419,11 @@ const Music = () => {
               Have a song that needs a visual story? Let's collaborate to create a music video 
               that captures the essence of your music.
             </p>
-            <Button size="lg" className="btn-hero">
-              <a href="/contact">Start a Music Project</a>
-            </Button>
+            <Link to="/contact">
+              <Button size="lg" className="btn-hero">
+                Start a Music Project
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

@@ -25,12 +25,12 @@ const NotFound = () => {
         </div>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button size="lg" className="btn-hero">
-            <Link to="/" className="flex items-center space-x-2">
+          <Link to="/" className="flex items-center space-x-2">
+            <Button size="lg" className="btn-hero">
               <Home size={20} />
               <span>Return Home</span>
-            </Link>
-          </Button>
+            </Button>
+          </Link>
           <Button variant="outline" size="lg" className="btn-ghost" onClick={() => window.history.back()}>
             <ArrowLeft size={18} className="mr-2" />
             Go Back

@@ -28,8 +28,8 @@ const Footer = () => {
 
   return (
     <footer className="bg-card border-t border-border">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="container mx-auto px-4 py-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {/* Brand Section */}
           <div className="lg:col-span-1">
             <Link to="/" className="font-display text-2xl font-bold text-primary mb-4 block">
@@ -54,7 +54,7 @@ const Footer = () => {
                 <li key={link.name}>
                   <Link 
                     to={link.path} 
-                    className="text-muted-foreground hover:text-primary transition-colors"
+                    className="text-muted-foreground hover:text-primary transition-colors text-sm py-0.5"
                   >
                     {link.name}
                   </Link>
@@ -70,7 +70,7 @@ const Footer = () => {
               {services.map((service) => {
                 const IconComponent = service.icon;
                 return (
-                  <li key={service.name} className="flex items-center space-x-2">
+                  <li key={service.name} className="flex items-center space-x-2 text-sm py-0.5">
                     <IconComponent size={16} className="text-primary" />
                     <span className="text-muted-foreground">{service.name}</span>
                   </li>
@@ -88,12 +88,12 @@ const Footer = () => {
                 const content = (
                   <div className="flex items-center space-x-2">
                     <IconComponent size={16} className="text-primary flex-shrink-0" />
-                    <span className="text-muted-foreground text-sm">{contact.text}</span>
+                    <span className="text-muted-foreground text-xs">{contact.text}</span>
                   </div>
                 );
 
                 return (
-                  <li key={index}>
+                  <li key={index} className="py-0.5">
                     {contact.href ? (
                       <a href={contact.href} className="hover:text-primary transition-colors">
                         {content}
@@ -109,7 +109,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Section */}
-        <div className="border-t border-border mt-8 pt-8">
+        <div className="border-t border-border mt-0 pt-0">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-sm text-muted-foreground">
               © {currentYear} Satyajeet R. Shinde. All rights reserved.

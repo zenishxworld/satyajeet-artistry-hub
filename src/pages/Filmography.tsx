@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Play, Calendar, MapPin, Users, Award } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -174,12 +175,12 @@ const Filmography = () => {
                 <Card key={index} className="card-hover overflow-hidden">
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
                     {/* Video Preview */}
-                    <div 
-                      className="relative h-64 lg:h-80 bg-gradient-to-br from-muted to-muted/60 flex items-center justify-center cursor-pointer group"
+                    <div
+                      className="relative video-responsive-container bg-gradient-to-br from-muted to-muted/60 flex items-center justify-center cursor-pointer group"
                       onClick={() => handleProjectClick(index)}
                     >
                       {selectedProject === index ? (
-                        <div className="video-container absolute inset-4">
+                        <div className="video-responsive absolute inset-0">
                           {project.facebookEmbed ? (
                             <iframe
                               src={project.facebookUrl}
@@ -203,6 +204,13 @@ const Filmography = () => {
                         </div>
                       ) : (
                         <>
+                          {project.youtubeId && (
+                            <img
+                              src={`https://img.youtube.com/vi/${project.youtubeId}/hqdefault.jpg`}
+                              alt={`Thumbnail for ${project.title}`}
+                              className="absolute inset-0 w-full h-full object-cover"
+                            />
+                          )}
                           <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors" />
                           <Play size={48} className="text-white z-10 group-hover:scale-110 transition-transform" />
                           <div className="absolute top-4 left-4">
@@ -333,7 +341,7 @@ const Filmography = () => {
               Have a story to tell or a vision to bring to life? Let's collaborate on your next creative project.
             </p>
             <Button size="lg" className="btn-hero">
-              <a href="/contact">Start a Project</a>
+              <Link to="/contact">Start a Project</Link>
             </Button>
           </div>
         </div>

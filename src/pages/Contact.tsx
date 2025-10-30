@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from 'react-router-dom';
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
@@ -17,6 +18,14 @@ const Contact = () => {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const location = useLocation();
+
+  // Scroll to top when navigating to contact page
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    if (history.scrollRestoration) history.scrollRestoration = 'manual';
+  }, [location.pathname]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -68,7 +77,7 @@ const Contact = () => {
     {
       icon: Phone,
       title: "Phone Number",
-      detail: "+91-9974284035",
+      detail: "+91-7351193066",
       description: "Available Mon-Sat, 9 AM - 6 PM",
       href: "tel:+919974284035"
     },
@@ -311,7 +320,7 @@ const Contact = () => {
       </section>
 
       {/* Services Overview */}
-      <section className="py-20 bg-card">
+      {/* <section className="py-20 bg-card">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
@@ -343,10 +352,10 @@ const Contact = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* FAQ Section */}
-      <section className="py-20">
+      {/* <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="font-display text-3xl font-bold text-center mb-12">
@@ -382,7 +391,7 @@ const Contact = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </main>
   );
 };

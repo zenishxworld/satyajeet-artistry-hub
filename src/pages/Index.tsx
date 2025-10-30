@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ChevronRight, Film, Music, Calendar, Play, ArrowRight } from "lucide-react";
+import { ChevronRight, Film, Music, Calendar, Play, ArrowRight, GraduationCap, Video, Camera } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import heroImage from "@/assets/hero-bg.jpg";
@@ -9,37 +9,34 @@ const Index = () => {
   const categories = [
     // Workshops temporarily removed
     {
+      title: "Mentoring",
+      description: "Guiding aspiring students through personalized mentorship programs like IELTS, TOEFL, Duolingo and sharing insights & fostering growth.",
+      icon: GraduationCap,
+      link: "/contact",
+      accent: "text-accent",
+    },
+    {
+      title: "Music",
+      description: "Welcome to my World of music where every note tells a story. I'm a singer weaving my emotions into melodies. Join me on this musical journey.",
+      icon: Music,
+      link: "/music",
+      accent: "text-accent",
+    },
+    {
       title: "Filmography",
       description: "Cinematic storytelling through Direction, Acting, Screenplay Writing and Cinematography across diverse projects.",
       icon: Film,
       link: "/filmography",
       accent: "text-primary",
     },
+    
+    
     {
-      title: "Music",
-      description: "Welcome to my World of music where every note tells a story. I'm a singer weaving my emotions into melodies. Join me on this musical journey—one song at a time.",
-      icon: Music,
-      link: "/music",
+      title: "Photography",
+      description: "Capturing moments and telling stories through the lens, specializing in diverse photographic styles and projects.",
+      icon: Camera,
+      link: "/photography",
       accent: "text-accent",
-    },
-  ];
-
-  const featuredWorks = [
-    {
-      title: "Meri Zindagi",
-      category: "Music Video",
-      date: "2024",
-      description: "A heartfelt music video exploring life's journey",
-      image: "/placeholder-music.jpg",
-      link: "https://youtu.be/ZwmgMYfTQ4A",
-    },
-    {
-      title: "Latest Film Project",
-      category: "Filmmaking",
-      date: "2024",
-      description: "Recent cinematographic work and direction",
-      image: "/placeholder-film.jpg",
-      link: "/filmography",
     },
   ];
 
@@ -55,7 +52,7 @@ const Index = () => {
         
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
           <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-glow animate-fade-in">
-            Teaching, Filmmaking,
+              Mentoring, Filmmaking,
             <br />
             <span className="text-accent">Passion for Music</span>
           </h1>
@@ -166,67 +163,16 @@ const Index = () => {
                       <p className="text-muted-foreground mb-6 leading-relaxed">
                         {category.description}
                       </p>
-                      <Button variant="ghost" className="group-hover:text-primary">
-                        <Link to={category.link} className="flex items-center space-x-2">
+                      <Link to={category.link} className="flex items-center space-x-2">
+                        <Button className="btn-hero">
                           <span>Explore</span>
                           <ArrowRight size={16} />
-                        </Link>
-                      </Button>
+                        </Button>
+                      </Link>
                     </CardContent>
                   </Card>
                 );
               })}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Works Section */}
-      <section className="py-20 bg-card">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
-                Featured Works
-              </h2>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Recent projects showcasing creativity across filmmaking, music, and education
-              </p>
-            </div>
-
-            <div className="portfolio-grid">
-              {featuredWorks.map((work, index) => (
-                <Card key={index} className="card-hover overflow-hidden group">
-                  <div className="relative h-48 bg-gradient-to-br from-muted to-muted/60 flex items-center justify-center">
-                    <Play size={32} className="text-muted-foreground group-hover:text-primary transition-colors" />
-                    <div className="absolute top-4 right-4">
-                      <span className="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm font-medium">
-                        {work.category}
-                      </span>
-                    </div>
-                  </div>
-                  <CardContent className="p-6">
-                    <div className="flex items-center justify-between mb-2">
-                      <h3 className="font-display text-lg font-semibold group-hover:text-primary transition-colors">
-                        {work.title}
-                      </h3>
-                      <span className="text-sm text-muted-foreground flex items-center space-x-1">
-                        <Calendar size={14} />
-                        <span>{work.date}</span>
-                      </span>
-                    </div>
-                    <p className="text-muted-foreground mb-4 leading-relaxed">
-                      {work.description}
-                    </p>
-                    <Button variant="ghost" size="sm" className="group-hover:text-primary">
-                      <Link to={work.link} className="flex items-center space-x-2">
-                        <span>View Project</span>
-                        <ArrowRight size={14} />
-                      </Link>
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
             </div>
           </div>
         </div>

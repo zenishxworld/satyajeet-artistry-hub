@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Camera, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -69,7 +70,7 @@ const Photography = () => {
                   />
                   {/* Hover Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-4">
-                    <p className="text-white text-sm font-medium text-center transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                    <p className="text-black text-sm font-medium text-center transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                       Click to view full size
                     </p>
                   </div>
@@ -121,7 +122,7 @@ const Photography = () => {
               Interested in photography services or collaboration? Let's connect and create something beautiful.
             </p>
             <Button size="lg" className="btn-hero">
-              <a href="/contact">Get in Touch</a>
+              <Link to="/contact">Get in Touch</Link>
             </Button>
           </div>
         </div>

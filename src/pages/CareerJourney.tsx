@@ -5,8 +5,16 @@ const CareerJourney = () => {
   const careerTimeline = [
     {
       role: "IELTS Faculty",
+      company: "EdMasters – Visa Consultants Pvt. Ltd.",
+      period: "August 2022 – Present",
+      location: "Vadodara, Gujarat",
+      description:
+        "Conducted IELTS training, grammar classes, mock tests, and one-on-one speaking sessions."
+    },
+    {
+      role: "IELTS Faculty",
       company: "Future Link – Visa Consultants Pvt. Ltd.",
-      period: "Jan 2019 – Present",
+      period: "Jan 2019 – July 2022",
       location: "Vadodara, Gujarat",
       description:
         "Conducted IELTS training, grammar classes, mock tests, and one-on-one speaking sessions."

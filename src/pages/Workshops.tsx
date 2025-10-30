@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Calendar, MapPin, Users, Clock, Award, BookOpen, Target, CheckCircle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -289,12 +290,16 @@ const Workshops = () => {
               with expert guidance and comprehensive training.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="btn-hero">
-                <a href="/contact">Inquire About Training</a>
-              </Button>
-              <Button variant="outline" size="lg" className="btn-ghost">
-                <a href="/about">Learn About Our Approach</a>
-              </Button>
+              <Link to="/contact">
+                <Button size="lg" className="btn-hero">
+                  Inquire About Training
+                </Button>
+              </Link>
+              <Link to="/about">
+                <Button variant="outline" size="lg" className="btn-ghost">
+                  Learn About Our Approach
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
